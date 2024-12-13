@@ -15,9 +15,21 @@ namespace WineStore.Controllers
         private WineStoreDbContext db = new WineStoreDbContext();
 
         // GET: Products
-        public ActionResult Index()
+        public ActionResult Index(String productName, String productPrice)
         {
-            var products = db.Products.Include(p => p.Catalogy);
+            var products = db.Products.Select(p => p);
+            if (!string.IsNullOrEmpty(productName))
+            {
+                products = products.Where(p => p.ProductName.Contains(productName));
+            }
+            if (!string.IsNullOrEmpty(productPrice))
+            {
+                decimal price = 0;
+                if(decimal.TryParse(productPrice, out price))
+                {
+                    products = products.Where(p => p.Price >= price);
+                }
+            }
             return View(products.ToList());
         }
 
