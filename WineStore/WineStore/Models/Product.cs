@@ -11,6 +11,8 @@
     public partial class Product
     {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [Required(ErrorMessage = "Mã sản phẩm không được để trống!")]
+        [DisplayName("Mã sản phẩm")]
         public int ProductID { get; set; }
 
         [Required(ErrorMessage = "Tên sản phẩm không được để trống!")]
@@ -22,14 +24,17 @@
         [DisplayName("Mô tả")]
         public string Description { get; set; }
 
+        [Required(ErrorMessage = "Giá bán không được để trống!")]
         [Column(TypeName = "numeric")]
         [DisplayName("Giá bán")]
         public decimal PurchasePrice { get; set; }
 
+        [Required(ErrorMessage = "Giá không được để trống!")]
         [Column(TypeName = "numeric")]
         [DisplayName("Giá")]
         public decimal Price { get; set; }
 
+        [Required(ErrorMessage = "Số lượng không được để trống!")]
         [DisplayName("Số lượng")]
         public int Quantity { get; set; }
 

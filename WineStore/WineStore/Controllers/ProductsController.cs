@@ -52,6 +52,14 @@ namespace WineStore.Controllers
         {
             if (ModelState.IsValid)
             {
+                var productImageFile = Request.Files["productImageFile"];
+                if(productImageFile != null && productImageFile.ContentLength > 0)
+                {
+                    String productImageFileName = System.IO.Path.GetFileName(productImageFile.FileName);
+                    String serverPathForSavingProductImageFile = Server.MapPath("~/Images/" + productImageFileName);
+                    productImageFile.SaveAs(serverPathForSavingProductImageFile);
+                    product.Image = productImageFileName;
+                }
                 db.Products.Add(product);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -86,6 +94,20 @@ namespace WineStore.Controllers
         {
             if (ModelState.IsValid)
             {
+                var persistentProduct = db.Products.AsNoTracking().SingleOrDefault(p => p.ProductID == product.ProductID);
+                var productImageFile = Request.Files["productImageFile"];
+                if (productImageFile != null && productImageFile.ContentLength > 0)
+                {
+                    String productImageFileName = System.IO.Path.GetFileName(productImageFile.FileName);
+                    String serverPathForSavingProductImageFile = Server.MapPath("~/Images/" + productImageFileName);
+                    productImageFile.SaveAs(serverPathForSavingProductImageFile);
+                    product.Image = productImageFileName;
+                }
+                else
+                {
+                    product.Image = persistentProduct.Image;
+                }
+
                 db.Entry(product).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
