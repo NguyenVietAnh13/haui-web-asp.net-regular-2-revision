@@ -28,9 +28,10 @@
               "RelativeDocumentMoniker": "WineStore\\Controllers\\ProductsController.cs",
               "ToolTip": "C:\\Users\\PC\\OneDrive\\Desktop\\WebASP.NETRegular2Revision\\WineStore\\WineStore\\Controllers\\ProductsController.cs",
               "RelativeToolTip": "WineStore\\Controllers\\ProductsController.cs",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAABUAAAANAAAA",
+              "ViewState": "AQIAABEAAAAAAAAAAAAAACIAAAAuAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-13T09:39:05.247Z",
+              "IsPinned": true,
               "EditorCaption": ""
             },
             {
@@ -41,9 +42,11 @@
               "RelativeDocumentMoniker": "WineStore\\Views\\Products\\Index.cshtml",
               "ToolTip": "C:\\Users\\PC\\OneDrive\\Desktop\\WebASP.NETRegular2Revision\\WineStore\\WineStore\\Views\\Products\\Index.cshtml",
               "RelativeToolTip": "WineStore\\Views\\Products\\Index.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABcAAAAAAAAA",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAiwB0AAABbAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-13T09:34:23.187Z"
+              "WhenOpened": "2024-12-13T09:34:23.187Z",
+              "IsPinned": true,
+              "EditorCaption": ""
             }
           ]
         }

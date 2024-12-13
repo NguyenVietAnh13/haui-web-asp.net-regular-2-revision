@@ -22,6 +22,14 @@
     <input type="submit" value="Tìm" />
 }
 
+<button class="btn btn-outline-info">
+    @Html.ActionLink("Sắp xếp theo tên", "Index", new { sortCriterion = ViewBag.sortByName })
+</button>
+
+<button class="btn btn-outline-info">
+    @Html.ActionLink("Sắp xếp theo giá", "Index", new { sortCriterion = ViewBag.sortByPrice })
+</button>
+
 <table class="table">
     <tr>
         <th>

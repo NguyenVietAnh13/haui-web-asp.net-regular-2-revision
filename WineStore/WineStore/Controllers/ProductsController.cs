@@ -15,9 +15,26 @@ namespace WineStore.Controllers
         private WineStoreDbContext db = new WineStoreDbContext();
 
         // GET: Products
-        public ActionResult Index(String productName, String productPrice)
+        public ActionResult Index(string productName, string productPrice, string sortCriterion)
         {
             var products = db.Products.Select(p => p);
+            ViewBag.sortByName = String.IsNullOrEmpty(sortCriterion) ? "NAME_ASC" : "NAME_DESC";
+            ViewBag.sortByPrice = sortCriterion == "PRICE_ASC" ? "PRICE_ASC" : "PRICE_DESC";
+            switch (sortCriterion)
+            {
+                case "NAME_ASC":
+                    products = products.OrderBy(p => p.ProductName);
+                    break;
+                case "NAME_DESC":
+                    products = products.OrderByDescending(p => p.ProductName);
+                    break;
+                case "PRICE_ASC":
+                    products = products.OrderBy(p => p.Price);
+                    break;
+                case "PRICE_DESC":
+                    products = products.OrderBy(p => p.Price);
+                    break;
+            }
             if (!string.IsNullOrEmpty(productName))
             {
                 products = products.Where(p => p.ProductName.Contains(productName));
@@ -25,7 +42,7 @@ namespace WineStore.Controllers
             if (!string.IsNullOrEmpty(productPrice))
             {
                 decimal price = 0;
-                if(decimal.TryParse(productPrice, out price))
+                if (decimal.TryParse(productPrice, out price))
                 {
                     products = products.Where(p => p.Price >= price);
                 }
@@ -65,7 +82,7 @@ namespace WineStore.Controllers
             if (ModelState.IsValid)
             {
                 var productImageFile = Request.Files["productImageFile"];
-                if(productImageFile != null && productImageFile.ContentLength > 0)
+                if (productImageFile != null && productImageFile.ContentLength > 0)
                 {
                     String productImageFileName = System.IO.Path.GetFileName(productImageFile.FileName);
                     String serverPathForSavingProductImageFile = Server.MapPath("~/Images/" + productImageFileName);
